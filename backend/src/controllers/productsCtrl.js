@@ -4,7 +4,7 @@ este archivo tiene los metodos del CRUD
 
 //creo un array de funciones
 const productsController = {};
-import productsModel from "../models/products.js"
+import productsModel from "../models/productsMdl.js"
 
 // SELECT 
 productsController.getProducts = async (req, res) => {

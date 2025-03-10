@@ -1,9 +1,9 @@
 /*este archivo sirve para definir que metodos del CRUD va a tener mi ruta*/
 
 import express from "express";
-import productsController from "../controllers/productsCtrl";
+import productsController from "../controllers/productsCtrl.js";
 
-const router = express.router();
+const router = express.Router();
 
 router.route("/")
 .get(productsController.getProducts)
