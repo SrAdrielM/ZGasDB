@@ -8,7 +8,7 @@ clientsController.getClients = async (req, res) => {
 }
 
 //POST
-clientsController.getClients = async (req, res) => {
+clientsController.insertClients = async (req, res) => {
     const { name, lastName, birthday, email, password, telephone, dui, isVerified  } = req.body;
     const newClient = new clientsModel ({ name, lastName, birthday, email, password, telephone, dui, isVerified })
     await newClient.save()
