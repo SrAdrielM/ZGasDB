@@ -6,7 +6,7 @@ este archivo tiene los metodos del CRUD
 const productsController = {};
 import productsModel from "../models/productsMdl.js"
 
-// SELECT 
+// SELECT
 productsController.getProducts = async (req, res) => {
     const products = await productsModel.find()
     res.json(products)
