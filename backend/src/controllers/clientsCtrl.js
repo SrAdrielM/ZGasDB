@@ -25,7 +25,7 @@ clientsController.deleteClients = async (req, res) => {
 clientsController.updateClients = async (req, res) => {
     const { name, lastName, birthday, email, password, telephone, dui, isVerified } = req.body;
     const updateClients = await clientsModel.findByIdAndUpdate(req.params.id, { name, lastName, birthday, email, password, telephone, dui, isVerified }, {new: true});
-    res.json({message: "CLient update succesfully"})
+    res.json({message: "Client update succesfully"})
 }
 
 export default clientsController;
