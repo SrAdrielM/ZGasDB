@@ -21,7 +21,7 @@ loginController.login = async (req, res) => {
             userFound ={_id: "admin"}
         }else{
             //2- EMPLEADO
-            userFound = await empployeesModel.findOne({})
+            userFound = await employeesMdl.findOne({})
             userType = "employee"
 
             if(!userFound){
@@ -62,7 +62,7 @@ loginController.login = async (req, res) => {
         )
 
     } catch (error) {
-        res.json({message: "error"})
+        res.json({message: "error"+error})
     }
 }
 
