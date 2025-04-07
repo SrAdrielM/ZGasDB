@@ -25,9 +25,11 @@ app.use("/api/employees", employeesRouter);
 app.use("/api/branches", branchesRouter);
 app.use("/api/reviews", reviewsRouter)
 app.use("/api/evaluations", evaluationsRouter);
+
 app.use("/api/registerEmployees", registerEmployeesRouter);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRouter);
+app.use("/api/registerClients")
 
 
 //exporto esta constante para usar express en todo lados
