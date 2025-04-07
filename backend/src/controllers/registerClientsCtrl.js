@@ -5,7 +5,7 @@ import crypto from "crypto";
 
 import clientsMdl from "../models/clientsMdl.js";
 import {config} from "../config.js"
-import { register } from "module";
+
 
 const registerClientsController = {};
 
@@ -19,7 +19,7 @@ registerClientsController.register = async (req, res) => {
         }
 
         //Encriptacion de contraseña
-        const passwordHash = bcryptjs.hash(password, 10);
+        const passwordHash = await bcryptjs.hash(password, 10);
 
         //Guardamos el cliente en la base de datos
         const newCliente = new clientsMdl({
@@ -60,7 +60,7 @@ registerClientsController.register = async (req, res) => {
             from: config.email.email_user,
             to: email,
             subject: "Verificacion de correo",
-            text: "Para verificar tu cuenta, utiliza el siguiente codigo" + verificationCode + " que expira eh 2 horas."
+            text: "Para verificar tu cuenta, utiliza el siguiente codigo " + verificationCode + " que expira eh 2 horas."
         };
 
         //3- Enviar el correo
@@ -71,9 +71,35 @@ registerClientsController.register = async (req, res) => {
             console.log("Email sent" + info);
         }); 
 
-        res.json(message: "Client registered, please verify your email with the sent code")
+        res.json({message: "Client registered, please verify your email with the sent code"})
 
     } catch (error) {
         console.log("error: "+ error)
     }
+};
+
+registerClientsController.verificationCodeEmail = async (req, res) => {
+    const {requireCode} = req.body;
+    const token = req.cookies.verificationToken;
+
+    try {
+        const decoded = jsonwebtoken.verify(token, config.JWT.secret)
+        const {email, verificationCode: storedCode} = decoded;
+
+        if(requireCode !== storedCode){
+            return res.json({message: "Invalid code"})
+        }
+
+        const client = await clientsModel.findOne({email});
+        client.isVerified = true;
+        await client.save();
+
+        res.clearCookie("verificationToken");
+        res.json({message: "Email verified succesfuly"});
+
+    } catch (error) {
+        console.log("error" + error)
+    }
 }
+
+export default registerClientsController;

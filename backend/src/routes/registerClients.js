@@ -1,11 +1,12 @@
 import express from "express";
+import registerClientsController from "../controllers/registerClientsCtrl.js";
 
 const router = express.Router();
 
 router.route("/")
-.post();
+.post(registerClientsController.register);
 
 router.route("/verifyCodeEmail")
-.post(); 
+.post(registerClientsController.verificationCodeEmail); 
 
 export default router;

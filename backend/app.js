@@ -9,8 +9,9 @@ import branchesRouter from "./src/routes/branches.js"
 import reviewsRouter from "./src/routes/reviews.js";
 import evaluationsRouter from "./src/routes/evaluations.js"
 import registerEmployeesRouter from "./src/routes/registerEmployees.js";
-import loginRoute from "./src/routes/login.js"
-import logoutRouter from "./src/routes/logout.js"
+import loginRoute from "./src/routes/login.js";
+import logoutRouter from "./src/routes/logout.js";
+import registerClientsRouter from "./src/routes/registerClients.js"
 
 
 //creo una constante que es igual a la libreria que acabo de importar
@@ -29,7 +30,7 @@ app.use("/api/evaluations", evaluationsRouter);
 app.use("/api/registerEmployees", registerEmployeesRouter);
 app.use("/api/login", loginRoute);
 app.use("/api/logout", logoutRouter);
-app.use("/api/registerClients")
+app.use("/api/registerClients", registerClientsRouter); 
 
 
 //exporto esta constante para usar express en todo lados
